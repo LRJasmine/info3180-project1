@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}">
+{% endblock %}
+
+
+{% block main %}
+<h2 class="addprofile">Add Profile</h2>
+<p>Please fill out the form below to add a new profile</p>
+<form method="POST" action="{{ url_for('profile') }}">
+    
+    {{ form.csrf_token}}
+
+    <div class="form-group">
+        {{ form.firstname.label }} 
+        <p>Please enter your first name</p>
+        {{ form.firstname(class="form-control") }}
+    </div>
+    <div class="form-group">
+        {{ form.lastname.label }} 
+        <p>Please enter your last name</p>
+        {{ form.lastname(class="form-control") }}
+    </div>
+    <div class="form-group">
+        {{ form.gender.label }} 
+        <p>Please select your gender</p>
+        {{ form.gender(class="form-control") }}
+    </div>
+    <div class="form-group">
+        {{ form.email.label }} 
+        <p>Please enter your e-mail address</p>
+        {{ form.email(class="form-control", placeholder="jdoe@example.com") }}
+    </div>
+    <div class="form-group">
+        {{ form.location.label }} 
+        <p>Please enter your location</p>
+        {{ form.location(class="form-control", placeholder="Kingston, Jamaica") }}
+    </div>
+    <div class="form-group">
+        {{ form.biography.label }} 
+        <p>Please enter enter your biography</p>
+        {{ form.biography(class="form-control") }}
+    </div>
+    <div class="form-group">
+        {{ form.profilephoto.label }}
+        {{ form.profilephoto(class="form-control") }}
+        <button type="submit" class="addprofilebtn">Browse</button>
+
+    </div>
+  
+    <button type="submit" class="addprofilebtn">Add Profile</button>
+
+</form>
+
+{% endblock %}

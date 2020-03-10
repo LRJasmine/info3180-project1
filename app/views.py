@@ -9,6 +9,8 @@ import datetime
 
 from app import app
 from flask import render_template, request, redirect, url_for, flash
+from .profileform import AddProfileForm, UploadForm
+from werkzeug.utils import secure_filename
 
 
 ###
@@ -27,12 +29,28 @@ def about():
     return render_template('about.html', name="Mary Jane")
 
 
-@app.route('/profile')
+@app.route('/profile', methods=['POST', 'GET'])
 def profile():
     """Render the website's profile page"""
-    date_joined = datetime.date(2020, 2, 7) # a specific date 
-    joineddate = format_date_joined(date_joined)
-    return render_template('profile.html', date=joineddate)
+    browsephoto = UploadForm()
+    profileform = AddProfileForm()
+
+    if request.method == 'POST' and browsephoto.validate_on_submit():
+        # Get file data and save to your uploads folder
+        photo = profilephoto.photo.data
+
+        filename = secure_filename(photo.filename)
+        photo.save(os.path.join(
+            app.config['UPLOAD_FOLDER'], filename
+        ))
+
+
+        flash('File Saved', 'success')
+        return redirect(url_for('home'))
+
+    return render_template('upload.html', form=formupload)    if profileform.submit2.data and profileform.validate(): # notice the order 
+....
+    return render_template('profile.html', form=profileform)
 
 ###
 # The functions below should be applicable to all Flask apps.
