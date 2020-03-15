@@ -9,7 +9,7 @@ import datetime
 
 from app import app
 from flask import render_template, request, redirect, url_for, flash
-from .profileform import AddProfileForm, UploadForm
+from .profileform import AddProfileForm
 from werkzeug.utils import secure_filename
 
 
@@ -32,19 +32,27 @@ def about():
 @app.route('/profile', methods=['POST', 'GET'])
 def profile():
     """Render the website's profile page"""
-    browsephoto = UploadForm()
     profileform = AddProfileForm()
 
-    if request.method == 'POST' and browsephoto.validate_on_submit():
-        # Get file data and save to your uploads folder
-        photo = profilephoto.photo.data
+    # if request.method == 'POST' and browsephoto.validate_on_submit():
+    #     # Get file data and save to your uploads folder
+    #     photo = profilephoto.photo.data
 
-        filename = secure_filename(photo.filename)
-        photo.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+    #     filename = secure_filename(photo.filename)
+    #     photo.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         
-        return render_template('upload.html', form=browsephoto)    
-    if profileform.submit2.data and profileform.validate():
-        return render_template('profile.html', form=profileform)
+    #     return render_template('profile.html', form=browsephoto)    
+    if request.method == 'POST' and  profileform.validate_on_submit():
+        firstname = profileform.firstname.data
+        lastname = profileform.lastname.data
+        gender = profileform.gender.data
+        email = profileform.email.data
+        location = profileform.location.data
+        biography = profileform.biography.data
+        profilephoto = profilephoto.profilephoto.data
+
+    
+    return render_template('profile.html', form=profileform)
 
 ###
 # The functions below should be applicable to all Flask apps.
