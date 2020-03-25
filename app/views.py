@@ -34,14 +34,6 @@ def profile():
     """Render the website's profile page"""
     profileform = AddProfileForm()
 
-    # if request.method == 'POST' and browsephoto.validate_on_submit():
-    #     # Get file data and save to your uploads folder
-    #     photo = profilephoto.photo.data
-
-    #     filename = secure_filename(photo.filename)
-    #     photo.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        
-    #     return render_template('profile.html', form=browsephoto)    
     if request.method == 'POST' and  profileform.validate_on_submit():
         firstname = profileform.firstname.data
         lastname = profileform.lastname.data
@@ -49,8 +41,10 @@ def profile():
         email = profileform.email.data
         location = profileform.location.data
         biography = profileform.biography.data
-        profilephoto = profilephoto.profilephoto.data
-
+        profilephoto = profileform.profilephoto.data
+        
+        flash('Profile was sucessfully added', 'success')
+        return redirect(url_for('profiles'))
     
     return render_template('profile.html', form=profileform)
 

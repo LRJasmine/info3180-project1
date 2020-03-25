@@ -1,12 +1,15 @@
 {% extends "base.html" %}
 
 {% block css %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
 {% endblock %}
 
 
 {% block main %}
-<h2 class="addprofile">Add Profile</h2>
+
+<div class="addprofileheading">
+    <h2 class="addprofile">Add Profile</h2>
+</div>
 <p>Please fill out the form below to add a new profile</p>
 <form method="POST" action="{{ url_for('profile') }}">
     
