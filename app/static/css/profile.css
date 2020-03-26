@@ -1,4 +1,26 @@
-.addprofileheading {
-    font-weight: bolder;
-    font-family: Arial Black;
+.profilehead {
+    padding-top: 100px;
+    padding-bottom: 50px;
 }
+
+.card {
+    padding: 50px;
+    border-top: solid #007bff 5px;
+}
+
+.card label {
+    font-weight: bold;
+}
+
+body {
+    background-color:  #e6f3ff;
+}
+
+.custom-file-label::after {
+  content: "Browse...";
+  }
+
+.custom-file {
+    padding-bottom: 70px;
+}
+
