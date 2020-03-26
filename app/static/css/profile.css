@@ -16,3 +16,6 @@ body {
     background-color:  #e6f3ff;
 }
 
+#biography {
+    resize: none;
+}

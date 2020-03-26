@@ -40,12 +40,12 @@
         <div class="form-group">
             {{ form.location.label }} 
             <p>Please enter your location</p>
-            {{ form.location(class="form-control", placeholder="Kingston, Jamaica") }}
+            {{ form.location(class="form-control", placeholder="e.g. Kingston, Jamaica") }}
         </div>
         <div class="form-group">
             {{ form.biography.label }} 
             <p>Please enter enter your biography</p>
-            {{ form.biography(class="form-control") }}
+            {{ form.biography(class="form-control", maxlength="500", rows="5") }}
         </div>
         <div class="form-group custom-file">
             {{ form.profilephoto.label}}
