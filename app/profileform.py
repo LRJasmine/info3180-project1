@@ -7,7 +7,7 @@ from wtforms.validators import DataRequired, Email, Length
 class AddProfileForm(FlaskForm):
     firstname = StringField('First Name', validators=[DataRequired()])
     lastname = StringField('Last Name', validators=[DataRequired()])
-    gender =  SelectField('Gender', default='Select Gender', choices=[('default','Select Gender'),('male','Male'),('female','Female')], validators=[DataRequired()])
+    gender =  SelectField('Gender', choices=[('default','Select Gender'),('male','Male'),('female','Female')], validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     location = StringField('Location', validators=[DataRequired()])
     biography = TextAreaField('Biography', validators=[DataRequired(), Length(max=250)])

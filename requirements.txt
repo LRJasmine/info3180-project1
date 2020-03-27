@@ -17,7 +17,14 @@ WTForms
 blinker
 Flask-Mail
 
+Mako
+python-dateutil
+python-editor
+six
+SQLAlchemy
+
 # ----------------------
 # Production Server
 # ----------------------
 gunicorn
+alembic==1.0.7

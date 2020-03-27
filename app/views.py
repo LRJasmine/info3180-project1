@@ -4,13 +4,14 @@ Jinja2 Documentation:    http://jinja.pocoo.org/2/documentation/
 Werkzeug Documentation:  http://werkzeug.pocoo.org/documentation/
 This file creates your application.
 """
-import datetime 
+from datetime import datetime
 
-
-from app import app
+import os
+from app import app, db
 from flask import render_template, request, redirect, url_for, flash
 from .profileform import AddProfileForm
 from werkzeug.utils import secure_filename
+from app.models import UserProfile
 
 
 ###
@@ -42,6 +43,17 @@ def profile():
         location = profileform.location.data
         biography = profileform.biography.data
         profilephoto = profileform.profilephoto.data
+        date_created = datetime.utcnow()
+        
+        if gender=='Selct Gender':
+            flash('Please select gender')
+            
+        photofilename = secure_filename(profilephoto.filename)
+        profilephoto.save(os.path.join(app.config['UPLOAD_FOLDER'], photofilename))
+        
+        user = UserProfile(firstname,lastname,gender,email,location,biography,photofilename,date_created)
+        db.session.add(user)
+        db.session.commit()
         
         flash('Profile was sucessfully added', 'success')
         return redirect(url_for('profiles'))
