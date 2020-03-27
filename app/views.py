@@ -64,6 +64,12 @@ def profile():
 # The functions below should be applicable to all Flask apps.
 ###
 
+@app.route('/profiles', methods=['POST', 'GET'])
+def profiles():
+    return render_template('profiles.html')
+
+
+
 @app.route('/<file_name>.txt')
 def send_text_file(file_name):
     """Send your static text file."""
