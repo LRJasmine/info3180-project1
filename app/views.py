@@ -66,8 +66,13 @@ def profile():
 
 @app.route('/profiles', methods=['POST', 'GET'])
 def profiles():
-    return render_template('profiles.html')
+    users = UserProfile.query.all()
 
+    return render_template('profiles.html', users=users)
+
+@app.route('/oneprofilepage', methods=['POST', 'GET'])
+def oneprofilepage():
+    return render_template('oneprofilepage.html')
 
 
 @app.route('/<file_name>.txt')
