@@ -30,12 +30,16 @@ def about():
     return render_template('about.html', name="Mary Jane")
 
 
-@app.route('/profile', methods=['POST', 'GET'])
+@app.route('/profile', methods=["POST", "GET"])
 def profile():
     """Render the website's profile page"""
     profileform = AddProfileForm()
+    
 
-    if request.method == 'POST' and  profileform.validate_on_submit():
+    if request.method == "POST" and profileform.validate_on_submit():
+        if profileform.gender.data=='default':
+            flash('Please select gender')
+            
         firstname = profileform.firstname.data
         lastname = profileform.lastname.data
         gender = profileform.gender.data
@@ -44,10 +48,7 @@ def profile():
         biography = profileform.biography.data
         profilephoto = profileform.profilephoto.data
         date_created = datetime.utcnow()
-        
-        if gender=='Selct Gender':
-            flash('Please select gender')
-            
+        print(gender)
         photofilename = secure_filename(profilephoto.filename)
         profilephoto.save(os.path.join(app.config['UPLOAD_FOLDER'], photofilename))
         
@@ -67,13 +68,19 @@ def profile():
 @app.route('/profiles', methods=['POST', 'GET'])
 def profiles():
     users = UserProfile.query.all()
-
+    
     return render_template('profiles.html', users=users)
 
-@app.route('/oneprofilepage', methods=['POST', 'GET'])
-def oneprofilepage():
-    return render_template('oneprofilepage.html')
+@app.route('/profile/<userid>')
+def oneprofilepage(userid):
+    profileform = AddProfileForm()
+    
+    user = UserProfile.query.filter_by(id=userid).first()
+    
+    if request.method == 'GET':
+        return render_template('oneprofilepage.html', profile=user)
 
+    return render_template('profile.html', form=profileform)
 
 @app.route('/<file_name>.txt')
 def send_text_file(file_name):

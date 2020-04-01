@@ -7,8 +7,34 @@
 
 {% block main %}
 
-<h1>This is the Profiles Page</h1>
+<div>
+    <h1>This is the Profiles Page</h1>
+</div>
 
-
+{% if users %}
+    
+    {% for user in user %}
+        
+        <div class="card">
+            <div class="card-header">
+                <img src="{{ url_for('static', filename = 'uploads/'+ user.profile_picture) }}" id="images">
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">{{ user.first_name}} {{ user.last_name }}</h4>
+                <i class="fas fa-user fa-lg"></i>
+                <p class="card-text">{{ user.gender }}</p>
+                <i class="fas fa-map-marker-alt fa-lg"></i>
+                <p class="card-text">{{ user.location }}</p>
+            </div>
+            <form action="{{ url_for('profile', userid=user.id) }}" method="GET">
+                <button type="submit" name="submit" class="btn btn-success">View Profile</button>
+            </form>
+        </div>
+    {% endfor %}
+    
+{% else %}
+    <p>There are currently no users.</p>
+    <p> You may create a Profile by visiting the <a href="{{ url_for('profile') }}">Profile</a> Page</p>
+{% endif %}
 
 {% endblock %}

@@ -5,7 +5,6 @@
   </button>
   
   {% block css %}
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
   {% endblock %}
@@ -23,9 +22,6 @@
       </li>
       <li>
         <a class="nav-link" href="{{ url_for('profiles') }}">Profiles</a>
-      </li>
-      <li>
-        <a class="nav-link" href="{{ url_for('oneprofilepage') }}">One Profile Page</a>
       </li>
       
       
