@@ -11,7 +11,7 @@ from app import app, db
 from flask import render_template, request, redirect, url_for, flash
 from .profileform import AddProfileForm
 from werkzeug.utils import secure_filename
-from app.models import UserProfile
+from .models import UserProfile
 
 
 ###
@@ -36,29 +36,32 @@ def profile():
     profileform = AddProfileForm()
     
 
-    if request.method == "POST" and profileform.validate_on_submit():
-        if profileform.gender.data=='default':
-            flash('Please select gender')
+    if request.method == "POST":
+        
+        if profileform.validate_on_submit():
             
-        firstname = profileform.firstname.data
-        lastname = profileform.lastname.data
-        gender = profileform.gender.data
-        email = profileform.email.data
-        location = profileform.location.data
-        biography = profileform.biography.data
-        profilephoto = profileform.profilephoto.data
-        date_created = datetime.utcnow()
-        print(gender)
-        photofilename = secure_filename(profilephoto.filename)
-        profilephoto.save(os.path.join(app.config['UPLOAD_FOLDER'], photofilename))
+            if profileform.gender.data=='default':
+                flash('Please select gender')
+                
+            firstname = profileform.firstname.data
+            lastname = profileform.lastname.data
+            gender = profileform.gender.data
+            email = profileform.email.data
+            location = profileform.location.data
+            biography = profileform.biography.data
+            profilephoto = profileform.profilephoto.data
+            date_created = datetime.utcnow()
+            print(gender)
+            photofilename = secure_filename(profilephoto.filename)
+            profilephoto.save(os.path.join(app.config['UPLOAD_FOLDER'], photofilename))
         
-        user = UserProfile(firstname,lastname,gender,email,location,biography,photofilename,date_created)
-        db.session.add(user)
-        db.session.commit()
+            user = UserProfile(firstname,lastname,gender,email,location,biography,photofilename,date_created)
+            db.session.add(user)
+            db.session.commit()
         
-        flash('Profile was sucessfully added', 'success')
-        return redirect(url_for('profiles'))
-    
+            flash('Profile was sucessfully added', 'success')
+            return redirect(url_for('profiles'))
+            
     return render_template('profile.html', form=profileform)
 
 ###
