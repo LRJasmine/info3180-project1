@@ -79,9 +79,10 @@ def oneprofilepage(userid):
     profileform = AddProfileForm()
     
     user = UserProfile.query.filter_by(id=userid).first()
+    userdate = format_date_joined(user.date_joined)
     
     if request.method == 'GET':
-        return render_template('oneprofilepage.html', profile=user)
+        return render_template('oneprofilepage.html', profile=user, userdate=userdate)
 
     return render_template('profile.html', form=profileform)
 
@@ -111,8 +112,8 @@ def page_not_found(error):
 
 
 def format_date_joined(date_joined):
-    ## Format the date to return only month and year date
-    return "Joined " + date_joined.strftime("%B, %Y") 
+    ## Format the date to return day, month and year date
+    return "Joined on " + date_joined.strftime("%A %B %d, %Y") 
 
 
 if __name__ == '__main__':
