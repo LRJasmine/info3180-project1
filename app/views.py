@@ -71,20 +71,17 @@ def profile():
 @app.route('/profiles', methods=['POST', 'GET'])
 def profiles():
     users = UserProfile.query.all()
-    
+        
     return render_template('profiles.html', users=users)
 
-@app.route('/profile/<userid>')
+@app.route('/profile/<userid>', methods=['POST'])
 def oneprofilepage(userid):
-    profileform = AddProfileForm()
-    
+
     user = UserProfile.query.filter_by(id=userid).first()
     userdate = format_date_joined(user.date_joined)
     
-    if request.method == 'GET':
-        return render_template('oneprofilepage.html', profile=user, userdate=userdate)
 
-    return render_template('profile.html', form=profileform)
+    return render_template('oneprofilepage.html', profile=user, userdate=userdate)
 
 @app.route('/<file_name>.txt')
 def send_text_file(file_name):
