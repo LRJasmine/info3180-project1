@@ -4,6 +4,7 @@
 }
 
 .card {
+    box-shadow: 2px 2px 5px 2px #DCDCDC		;
     padding: 50px;
     border-top: solid #007bff 5px;
 }
@@ -15,4 +16,11 @@
 
 #biography {
     resize: none;
+}
+
+.form-control {
+    width: 70%;
+    height: 2%;
+    box-shadow: 0px -1px 0px 1px #DCDCDC		;
+
 }

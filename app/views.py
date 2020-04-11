@@ -74,7 +74,7 @@ def profiles():
         
     return render_template('profiles.html', users=users)
 
-@app.route('/profile/<userid>', methods=['POST'])
+@app.route('/profile/<userid>', methods=['GET'])
 def oneprofilepage(userid):
 
     user = UserProfile.query.filter_by(id=userid).first()
