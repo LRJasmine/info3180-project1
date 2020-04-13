@@ -27,7 +27,7 @@ def home():
 @app.route('/about/')
 def about():
     """Render the website's about page."""
-    return render_template('about.html', name="Mary Jane")
+    return render_template('about.html', name="Dynamic Web Development II Project 1")
 
 
 @app.route('/profile', methods=["POST", "GET"])
@@ -45,7 +45,7 @@ def profile():
                 
             firstname = profileform.firstname.data
             lastname = profileform.lastname.data
-            gender = profileform.gender.data
+            gender = dict(profileform.gender.choices).get(profileform.gender.data)
             email = profileform.email.data
             location = profileform.location.data
             biography = profileform.biography.data

@@ -1,0 +1,23 @@
+body {
+    font-family: Arial, Helvetica, Lucida Sans, sans-serif;
+    font-weight: bolder;
+}
+
+.navbar-brand {
+    padding-right: 50px;
+    padding-left: 20px;
+}
+
+.jumbotron {
+    background-color: #e6f5ff;
+}
+
+h1 {
+    font-size: 50px;
+    font-weight: 900;
+}
+
+.profilehead {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
