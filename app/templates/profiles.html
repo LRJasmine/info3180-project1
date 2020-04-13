@@ -20,9 +20,9 @@
                 <img src="{{ url_for('static', filename = 'uploads/'+ user.profile_picture) }}" class="cover" id="images" alt="Profile Picture">
             </div>
             <div class="card-body col-sm-5">
-                <h4 class="card-title">{{ user.first_name}} {{ user.last_name }}</h4>
-                <p><i class="fas fa-user fa-lg"> {{ user.gender }}</i></p>
-                <p><i class="fas fa-map-marker-alt fa-lg"> {{ user.location }}</i></p>
+                <h3 class="card-title">{{ user.first_name}} {{ user.last_name }}</h3>
+                <p class="card-text"><i class="fas fa-user fa-lg"> {{ user.gender }}</i></p>
+                <p class="card-text"><i class="fas fa-map-marker-alt fa-lg"> {{ user.location }}</i></p>
             </div>
             <div class="col-sm-4 buttondiv">
                 <form action="{{ url_for('oneprofilepage', userid=user.id) }}" method="GET" class="align-middle">
