@@ -34,7 +34,6 @@ def about():
 def profile():
     """Render the website's profile page"""
     profileform = AddProfileForm()
-    
 
     if request.method == "POST":
         
