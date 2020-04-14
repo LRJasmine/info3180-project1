@@ -40,7 +40,7 @@ def profile():
         
         if profileform.validate_on_submit():
             
-            if profileform.gender.data=='default':
+            if profileform.gender.data=='':
                 flash('Please select gender')
                 
             firstname = profileform.firstname.data
@@ -51,7 +51,6 @@ def profile():
             biography = profileform.biography.data
             profilephoto = profileform.profilephoto.data
             date_created = datetime.utcnow()
-            print(gender)
             photofilename = secure_filename(profilephoto.filename)
             profilephoto.save(os.path.join(app.config['UPLOAD_FOLDER'], photofilename))
         
